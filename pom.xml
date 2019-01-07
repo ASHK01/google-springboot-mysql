@@ -76,6 +76,13 @@
 	</dependencyManagement>
 
 	<build>
+		 <resources>
+	        <resource>
+	            <directory>src/main/resources</directory>
+	            <filtering>true</filtering>
+	        </resource>
+	    </resources>
+	    
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -102,5 +109,31 @@
 			<url>https://repo.spring.io/milestone</url>
 		</repository>
 	</repositories>
+
+	<profiles>
+		<profile>
+		    <id>dev</id>
+		    <properties>
+		        <activatedProperties>dev</activatedProperties>
+		    </properties>
+		    <activation>
+		        <activeByDefault>true</activeByDefault>
+		    </activation>
+		</profile>
+		<profile>
+		    <id>gcp</id>
+		    <properties>
+		        <activatedProperties>gcp</activatedProperties>
+		    </properties>
+		    
+		    <dependencies>
+		        <dependency>
+		            <groupId>org.springframework.cloud</groupId>
+					<artifactId>spring-cloud-gcp-starter-sql-mysql</artifactId>
+		            <scope>provided</scope>
+		        </dependency>
+		    </dependencies>
+		</profile>
+	</profiles>
 
 </project>
