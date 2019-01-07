@@ -32,6 +32,12 @@ public class ReservationApplication {
 		 System.out.println();
 	    return "hello world!"+ a;
 	  }
+	 
+	 @GetMapping("/test")
+	  public String hello2() {
+		Integer a = jdbcTemplate.queryForObject("select count(*) from users", Integer.class);
+	    return "hello world!"+ a;
+	  }
 }
 
 class JDBCRunner implements ApplicationRunner {
